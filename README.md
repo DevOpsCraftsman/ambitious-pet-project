@@ -7,7 +7,7 @@ I want to improve my skills in:
 - Domain-Driven Design Tactical Patterns
 
 ### Conditions
-- techs to use:
+- Techs to use:
     - .NET stack
     - Go
     - Rust 
