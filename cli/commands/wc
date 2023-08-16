@@ -1,0 +1,36 @@
+#! /usr/bin/python3
+import sys
+
+def wc(path, option=None):
+    with open(path, "rb") as file:
+        res = -1
+        if option == "-c" or option == "-m":
+            print(wcc(file))
+        elif option == "-l":
+            print(wcl(file))
+        elif option == "-w":
+            print(wcw(file))
+        elif not option:
+            print(wcl(file), end=" ")
+            file.seek(0)
+            print(wcw(file), end=" ")
+            file.seek(0)
+            print(wcc(file), end=" ")
+        print(path)
+
+
+def wcc(file):
+    return (len(file.read()))
+
+def wcl(file):
+    return (len(file.readlines()))
+    
+def wcw(file):
+    return (len(file.read().split()))
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 3:
+        wc(sys.argv[2], sys.argv[1])
+    else:
+        wc(sys.argv[1])
