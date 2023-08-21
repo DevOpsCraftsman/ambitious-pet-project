@@ -5,12 +5,15 @@ using namespace std;
 
 void displayArgs(int argc, char *const *argv);
 
-
 void countLines(ifstream &file);
+void countChars(ifstream &file);
+void countWords(ifstream &file);
+
+bool isBlank(char character);
 
 int main(int argc, char *argv[]) {
 
-    displayArgs(argc, argv);
+//    displayArgs(argc, argv);
 
     ifstream file(argv[1]);
 
@@ -19,20 +22,47 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    countLines(file);
+//    countChars(file);
+//    file.seekg(0, ios::beg);
+//    countLines(file);
+    countWords(file);
+    file.close();
 
     return 0;
+}
+
+void countChars(ifstream &file) {
+    char character;
+    int charCount = 0;
+    while (file.get(character)) {
+        charCount++;
+    }
+    cout << charCount << endl;
+}
+
+void countWords(ifstream &file) {
+    char character;
+    int wordsCount = 0;
+    bool lastCharWasBlank = false;
+    while (file.get(character)) {
+        if (isspace(character)) {
+            if (!lastCharWasBlank) {
+                wordsCount++;
+            }
+            lastCharWasBlank = true;
+        } else {
+            lastCharWasBlank = false;
+        }
+    }
+    cout << wordsCount << endl;
 }
 
 void countLines(ifstream &file) {
     string line;
     int lineCount = 0;
-
     while (getline(file, line)) {
         lineCount++;
     }
-    file.close();
-
     cout << lineCount << endl;
 }
 
