@@ -3,30 +3,30 @@ use std::fs::File;
 use std::io::{Error, Read};
 
 fn main() -> std::io::Result<()> {
-    let contents = get_content()?;
-    wc_l(&contents);
-    wc_w(&contents);
-    wc_c(contents);
+    let file_content = get_file_content()?;
+    count_lines(&file_content);
+    count_words(&file_content);
+    count_bytes(&file_content);
     Ok(())
 }
 
-fn wc_c(contents: String) {
-    println!("{}", contents.len());
+fn count_bytes(file_content: &String) {
+    println!("{}", file_content.len());
 }
 
-fn wc_w(contents: &String) {
-    println!("{}", contents.split_whitespace().count());
+fn count_words(file_content: &String) {
+    println!("{}", file_content.split_whitespace().count());
 }
 
-fn wc_l(contents: &String) {
-    println!("{}", contents.lines().count());
+fn count_lines(file_content: &String) {
+    println!("{}", file_content.lines().count());
 }
 
-fn get_content() -> Result<String, Error> {
-    let mut contents = String::new();
+fn get_file_content() -> Result<String, Error> {
+    let mut content = String::new();
     let mut file = get_file()?;
-    file.read_to_string(&mut contents)?;
-    Ok(contents)
+    file.read_to_string(&mut content)?;
+    Ok(content)
 }
 
 fn get_file() -> Result<File, Error> {
@@ -34,8 +34,6 @@ fn get_file() -> Result<File, Error> {
     let file = File::open(path)?;
     Ok(file)
 }
-
-const DEFAULT_PATH: &'static str = "../../data/text.txt";
 
 fn get_path() -> String {
     let args: Vec<String> = env::args().collect();
@@ -47,3 +45,5 @@ fn get_path() -> String {
     };
     String::from(path)
 }
+
+const DEFAULT_PATH: &'static str = "../../data/text.txt";
