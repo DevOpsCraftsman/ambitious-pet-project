@@ -8,7 +8,7 @@ mod test {
         assert_eq!(count_lines(&s0), 0);
         let s1 = String::from("this");
         assert_eq!(count_lines(&s1), 1);
-        let s3 = String::from("this\nis\nit");
+        let s3 = String::from("this\nis\nit even with extra words");
         assert_eq!(count_lines(&s3), 3);
     }
 
