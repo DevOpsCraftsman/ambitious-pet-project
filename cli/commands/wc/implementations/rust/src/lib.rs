@@ -8,11 +8,11 @@ pub mod wc {
     }
 
     pub fn count_bytes(file_content: &String) -> usize {
-        return 0
+        return file_content.bytes().count();
     }
 
     pub fn count_words(file_content: &String) -> usize {
-        return 0
+        return file_content.split_whitespace().count()
     }
 
     pub fn get_file_content() -> Result<String, Error> {
