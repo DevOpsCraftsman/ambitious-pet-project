@@ -1,5 +1,5 @@
 pub mod wc {
-    use rust::wc::{
+    use wc::wc::{
         count_bytes,
         count_lines,
         count_words,

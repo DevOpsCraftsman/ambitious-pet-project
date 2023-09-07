@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod test {
-    use rust::wc::{count_bytes, count_lines, count_words};
+    use wc::wc::{count_bytes, count_lines, count_words};
 
     #[test]
     fn test_count_lines() {
