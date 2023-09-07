@@ -1,49 +1,20 @@
-use std::env;
-use std::fs::File;
-use std::io::{Error, Read};
-
-fn main() -> std::io::Result<()> {
-    let file_content = get_file_content()?;
-    count_lines(&file_content);
-    count_words(&file_content);
-    count_bytes(&file_content);
-    Ok(())
-}
-
-fn count_bytes(file_content: &String) {
-    println!("{}", file_content.len());
-}
-
-fn count_words(file_content: &String) {
-    println!("{}", file_content.split_whitespace().count());
-}
-
-fn count_lines(file_content: &String) {
-    println!("{}", file_content.lines().count());
-}
-
-fn get_file_content() -> Result<String, Error> {
-    let mut content = String::new();
-    let mut file = get_file()?;
-    file.read_to_string(&mut content)?;
-    Ok(content)
-}
-
-fn get_file() -> Result<File, Error> {
-    let path = get_path();
-    let file = File::open(path)?;
-    Ok(file)
-}
-
-fn get_path() -> String {
-    let args: Vec<String> = env::args().collect();
-    let path_has_been_passed = args.len() > 1;
-    let path = if path_has_been_passed {
-        args[1].as_str()
-    } else {
-        DEFAULT_PATH
+pub mod wc {
+    use rust::wc::{
+        count_bytes,
+        count_lines,
+        count_words,
+        get_file_content,
     };
-    String::from(path)
+
+    pub fn main() -> std::io::Result<()> {
+        let file_content = get_file_content()?;
+        count_lines(&file_content);
+        count_words(&file_content);
+        count_bytes(&file_content);
+        Ok(())
+    }
 }
 
-const DEFAULT_PATH: &'static str = "../../data/text.txt";
+fn main() {
+    wc::main().expect("Not able to open the file");
+}
