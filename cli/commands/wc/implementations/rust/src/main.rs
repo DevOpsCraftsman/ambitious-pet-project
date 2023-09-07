@@ -8,9 +8,9 @@ pub mod wc {
 
     pub fn main() -> std::io::Result<()> {
         let file_content = get_file_content()?;
-        count_lines(&file_content);
-        count_words(&file_content);
-        count_bytes(&file_content);
+        println!("{}", count_lines(&file_content));
+        println!("{}", count_words(&file_content));
+        println!("{}", count_bytes(&file_content));
         Ok(())
     }
 }

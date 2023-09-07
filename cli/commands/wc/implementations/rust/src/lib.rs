@@ -3,16 +3,16 @@ pub mod wc {
     use std::fs::File;
     use std::io::{Error, Read};
 
-    pub fn count_bytes(file_content: &String) {
-        println!("{}", file_content.len());
+    pub fn count_lines(file_content: &String) -> usize {
+        return file_content.lines().count();
     }
 
-    pub fn count_words(file_content: &String) {
-        println!("{}", file_content.split_whitespace().count());
+    pub fn count_bytes(file_content: &String) -> usize {
+        return 0
     }
 
-    pub fn count_lines(file_content: &String) {
-        println!("{}", file_content.lines().count());
+    pub fn count_words(file_content: &String) -> usize {
+        return 0
     }
 
     pub fn get_file_content() -> Result<String, Error> {
